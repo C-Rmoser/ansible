@@ -24,5 +24,11 @@
     - name: Install Antigen plugin manager for zsh
       shell: curl -L git.io/antigen > antigen.zsh
     - name: Install Tmux
-      apt: name=tmux
-
+      apt: name=Tmux
+    - name: Clone dotfiles repo
+      git:
+        repo: https://github.com/C-Rmoser/dotfiles
+        dest: ~/.cfg
+        bare: true
+    - name: Checkout dotfiles
+      shell: alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME' && config checkout
