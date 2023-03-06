@@ -12,7 +12,7 @@
     - name: Install neovim
       apt: deb="~/nvim-linux64.deb"
     - name: Delete neovim.deb file
-      shell: rm ./nvim-linux64.deb
+      shell: rm "~/nvim-linux64.deb"
     - name: Install zsh
       apt: name=zsh
     - name: Change shell
