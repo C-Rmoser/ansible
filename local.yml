@@ -11,8 +11,10 @@
         dest="~/nvim-linux64.deb"
     - name: Install neovim
       apt: deb="~/nvim-linux64.deb"
-    - name: Delete neovim.deb file
-      shell: rm "~/nvim-linux64.deb"
+    - name: Remove neovim.deb file
+      ansible.builtin.file:
+        path: ~/nvim-linux64.deb
+        state: absent
     - name: Install zsh
       apt: name=zsh
     - name: Change shell
