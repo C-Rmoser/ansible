@@ -1,0 +1,26 @@
+- hosts: localhost
+  become: true
+  tasks:
+    - name: Install curl
+      apt: name=curl
+    - name: install git
+      apt: name=git-all
+    - name: Download neovim deb package
+      get_url: 
+        url="https://github.com/neovim/neovim/releases/download/stable/nvim-linux64.deb"
+        dest="~/nvim-linux64.deb"
+    - name: Install neovim
+      apt: deb="~/nvim-linux64.deb"
+    - name: Delete neovim.deb file
+      shell: rm ./nvim-linux64.deb
+    - name: Install zsh
+      apt: name=zsh
+    - name: Change shell
+      shell: chsh -s `which zsh`
+    - name: Install ohmyzsh
+      shell: sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+    - name: Install Antigen plugin manager for zsh
+      shell: curl -L git.io/antigen > antigen.zsh
+    - name: Install Tmux
+      apt: name=tmux
+
