@@ -3,6 +3,8 @@
   tasks:
     - name: Install gcc
       apt: name=build-essential
+    - name: Install stow
+      apt: name=stow
     - name: Download neovim deb package
       get_url: 
         url="https://github.com/neovim/neovim/releases/download/stable/nvim-linux64.deb"
@@ -23,23 +25,3 @@
       shell: curl -L git.io/antigen > antigen.zsh
     - name: Install Tmux
       apt: name=tmux
-    - name: Create Shell script
-      copy:
-        dest: ~/dotfiles.sh
-        content: |
-          git clone --bare https://github.com/C-Rmoser/dotfiles $HOME/.cfg
-          function config {
-             /usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME $@
-          }
-          mkdir -p .config-backup
-          config checkout
-          if [ $? = 0 ]; then
-            echo "Checked out config.";
-            else
-              echo "Backing up pre-existing dot files.";
-              config checkout 2>&1 | egrep "\s+\." | awk {'print $1'} | xargs -I{} mv {} .config-backup/{}
-          fi;
-          config checkout
-          config config status.showUntrackedFiles no
-    - name: Configure dotfiles
-      shell: sh ~/dotfiles.sh
