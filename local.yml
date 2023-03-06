@@ -30,5 +30,9 @@
         repo: https://github.com/C-Rmoser/dotfiles
         dest: ~/.cfg
         bare: true
+    - name: Backup dotfiles
+      shell: mkdir -p .config-backup && \ /usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME checkout 2>&1 | egrep "\s+\." | awk {'print $1'} | \ xargs -I{} mv {} .config-backup/{}
     - name: Checkout dotfiles
       shell: /usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME checkout
+    - name: Set showuntrackedfiles to no
+      shell: /usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME config --local status.showUntrackedFiles no
