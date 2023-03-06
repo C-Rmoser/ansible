@@ -28,7 +28,7 @@
     - name: Create Shell script
       copy:
         dest: ~/dotfiles.sh
-        content:
+        content: |
           git clone --bare https://github.com/C-Rmoser/dotfiles $HOME/.cfg
           function config {
              /usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME $@
@@ -44,4 +44,4 @@
           config checkout
           config config status.showUntrackedFiles no
     - name: Configure dotfiles
-      shell: chmod 755 ~/dotfiles.sh && ~/dotfiles.sh
+      shell: sh ~/dotfiles.sh
