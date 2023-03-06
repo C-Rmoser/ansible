@@ -1,10 +1,8 @@
 - hosts: localhost
   become: true
   tasks:
-    - name: Install curl
-      apt: name=curl
-    - name: install git
-      apt: name=git-all
+    - name: Install gcc
+      apt: name=build-essential
     - name: Download neovim deb package
       get_url: 
         url="https://github.com/neovim/neovim/releases/download/stable/nvim-linux64.deb"
