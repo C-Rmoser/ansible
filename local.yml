@@ -37,7 +37,7 @@
         state: absent
     - name: Remove .bashrc
       file:
-        path: $HOME/.zshrc 
+        path: $HOME/.bashrc
         state: absent
     - name: Stow dotfiles
       shell: cd $HOME/dotfiles/ && stow --target=$HOME */
