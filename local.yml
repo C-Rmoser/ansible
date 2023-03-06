@@ -24,7 +24,7 @@
     - name: Install Antigen plugin manager for zsh
       shell: curl -L git.io/antigen > antigen.zsh
     - name: Install Tmux
-      apt: name=Tmux
+      apt: name=tmux
     - name: Clone dotfiles repo
       git:
         repo: https://github.com/C-Rmoser/dotfiles
