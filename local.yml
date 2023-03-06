@@ -12,7 +12,7 @@
     - name: Install neovim
       apt: deb="~/nvim-linux64.deb"
     - name: Remove neovim.deb file
-      ansible.builtin.file:
+      file:
         path: ~/nvim-linux64.deb
         state: absent
     - name: Install zsh
@@ -25,3 +25,12 @@
       shell: curl -L git.io/antigen > antigen.zsh
     - name: Install Tmux
       apt: name=tmux
+    - name: Pull dotfiles
+      git:
+        repo: https://github.com/C-Rmoser/stow-dotfiles
+        dest: ~
+        clone: yes
+        update: yes
+    - name: Stow dotfiles
+      shell: cd $HOME/dotfiles/ && stow --target=$HOME */
+
