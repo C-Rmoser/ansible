@@ -25,14 +25,5 @@
       shell: curl -L git.io/antigen > antigen.zsh
     - name: Install Tmux
       apt: name=tmux
-    - name: Clone dotfiles repo
-      git:
-        repo: https://github.com/C-Rmoser/dotfiles
-        dest: ~/.cfg
-        bare: true
-    - name: Backup dotfiles
-      shell: mkdir -p .config-backup && \ /usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME checkout 2>&1 | egrep "\s+\." | awk {'print $1'} | \ xargs -I{} mv {} .config-backup/{}
-    - name: Checkout dotfiles
-      shell: /usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME checkout
-    - name: Set showuntrackedfiles to no
-      shell: /usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME config --local status.showUntrackedFiles no
+    - name: Configure dotfiles
+      shell: chmod 755 ./dotfiles.sh && ./dotfiles.sh
