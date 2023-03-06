@@ -28,7 +28,7 @@
     - name: Pull dotfiles
       git:
         repo: https://github.com/C-Rmoser/stow-dotfiles
-        dest: ~
+        dest: $HOME
         clone: yes
         update: yes
     - name: Stow dotfiles
