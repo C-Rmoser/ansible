@@ -46,6 +46,8 @@
         update: yes
     - name: Source tmux
       shell: tmux source $HOME/.tmux.conf
+      args:
+        executable: /bin/bash
     - name: Pull dotfiles
       git:
         repo: https://github.com/C-Rmoser/stow-dotfiles
