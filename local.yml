@@ -45,7 +45,7 @@
         clone: yes
         update: yes
     - name: Source tmux
-      shell: tmux source $HOME/.tmux.conf
+      shell: source $HOME/.tmux.conf
       args:
         executable: /bin/bash
     - name: Pull dotfiles
