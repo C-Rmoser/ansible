@@ -34,6 +34,16 @@
       shell: "source /root/.nvm/nvm.sh && nvm install node" 
       args:
         executable: /bin/bash
+    - name: Source nvm
+      shell: "source /root/.nvm/nvm.sh" 
+    - name: Clone Tmux plugin manager
+      git:
+        repo: https://github.com/tmux-plugins/tpm
+        dest: $HOME/.tmux/plugins/tpm
+        clone: yes
+        update: yes
+    - name: Source tmux
+      shell: tmux source $HOME/.tmux.conf
     - name: Pull dotfiles
       git:
         repo: https://github.com/C-Rmoser/stow-dotfiles
