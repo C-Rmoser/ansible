@@ -24,9 +24,7 @@
     - name: Install ohmyzsh
       shell: sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
     - name: Install Antigen plugin manager for zsh
-      get_url: 
-        url="git.io/antigen"
-        dest="~/tools/antigen/antigen.zsh"
+      shell: curl -L git.io/antigen > ~/tools/antigen/antigen.zsh 
     - name: Install Tmux
       apt: name=tmux
     - name: Install nvm
