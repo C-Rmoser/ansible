@@ -3,6 +3,12 @@
   tasks:
     - name: Install gcc
       apt: name=build-essential
+    - name: Install zip / unzip / tar
+      apt:
+        pkg:
+          - zip
+          - gzip
+          - tar
     - name: Install stow
       apt: name=stow
     - name: Install sdkman
