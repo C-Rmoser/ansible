@@ -31,9 +31,7 @@
       args:
         creates: "{{ ansible_env.HOME }}/.nvm/nvm.sh"
     - name: Install node and set version
-      shell: "source /root/.nvm/nvm.sh && nvm install node" 
-      args:
-        executable: /bin/bash
+      shell: "source /root/.nvm/nvm.sh && nvm install node | bash"
     - name: Pull dotfiles
       git:
         repo: https://github.com/C-Rmoser/stow-dotfiles
