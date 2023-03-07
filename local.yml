@@ -44,10 +44,6 @@
       shell: "source /root/.nvm/nvm.sh && nvm install node" 
       args:
         executable: /bin/bash
-    - name: Source nvm
-      shell: source /root/.nvm/nvm.sh
-      args:
-        executable: /bin/bash
     - name: Clone Tmux plugin manager
       git:
         repo: https://github.com/tmux-plugins/tpm
@@ -70,3 +66,7 @@
         state: absent
     - name: Stow dotfiles
       shell: cd $HOME/dotfiles/ && stow --target=$HOME */
+    - name: Source nvm
+      shell: source /root/.nvm/nvm.sh
+      args:
+        executable: /bin/bash
