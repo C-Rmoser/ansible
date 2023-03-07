@@ -5,6 +5,8 @@
       apt: name=build-essential
     - name: Install stow
       apt: name=stow
+    - name: Create tools folder
+      shell: mkdir ~/tools
     - name: Download neovim deb package
       get_url: 
         url="https://github.com/neovim/neovim/releases/download/stable/nvim-linux64.deb"
@@ -22,7 +24,9 @@
     - name: Install ohmyzsh
       shell: sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
     - name: Install Antigen plugin manager for zsh
-      shell: curl -L git.io/antigen > antigen.zsh
+      get_url: 
+        url="git.io/antigen"
+        dest="~/tools/antigen/antigen.zsh"
     - name: Install Tmux
       apt: name=tmux
     - name: Install nvm
