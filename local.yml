@@ -6,7 +6,7 @@
     - name: Install stow
       apt: name=stow
     - name: Create tools folder
-      shell: mkdir ~/tools
+      shell: mkdir -p ~/tools/antigen/
     - name: Download neovim deb package
       get_url: 
         url="https://github.com/neovim/neovim/releases/download/stable/nvim-linux64.deb"
