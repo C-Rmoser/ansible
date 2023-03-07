@@ -44,10 +44,6 @@
         dest: $HOME/.tmux/plugins/tpm
         clone: yes
         update: yes
-    - name: Source tmux
-      shell: source $HOME/.tmux.conf
-      args:
-        executable: /bin/bash
     - name: Pull dotfiles
       git:
         repo: https://github.com/C-Rmoser/stow-dotfiles
@@ -64,4 +60,8 @@
         state: absent
     - name: Stow dotfiles
       shell: cd $HOME/dotfiles/ && stow --target=$HOME */
+    - name: Source tmux
+      shell: source $HOME/.tmux.conf
+      args:
+        executable: /bin/bash
 
