@@ -35,7 +35,7 @@
       args:
         executable: /bin/bash
     - name: Source nvm
-      shell: "source /root/.nvm/nvm.sh" 
+      shell: source /root/.nvm/nvm.sh
     - name: Clone Tmux plugin manager
       git:
         repo: https://github.com/tmux-plugins/tpm
