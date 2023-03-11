@@ -1,76 +1,78 @@
 - hosts: localhost
   become: true
   tasks:
-    - name: Install gcc
-      apt: name=build-essential
     - name: Install zip / unzip / tar
       apt:
         pkg:
           - zip
           - gzip
           - tar
-    - name: Install stow
-      apt: name=stow
-    - name: Install sdkman
-      shell: curl -s "https://get.sdkman.io" | bash
-    - name: Create tools folder
-      shell: mkdir -p ~/tools/antigen/
-    - name: Download neovim deb package
-      get_url: 
-        url="https://github.com/neovim/neovim/releases/download/stable/nvim-linux64.deb"
-        dest="~/nvim-linux64.deb"
-    - name: Install neovim
-      apt: deb="~/nvim-linux64.deb"
-    - name: Remove neovim.deb file
+    # - name: Install stow
+    #   apt: name=stow
+    # - name: Install sdkman
+    #   shell: curl -s "https://get.sdkman.io" | bash
+    # - name: Create tools folder
+    #   shell: mkdir -p ~/tools/antigen/
+    # - name: Download neovim deb package
+    #   get_url: 
+    #     url="https://github.com/neovim/neovim/releases/download/stable/nvim-linux64.deb"
+    #     dest="~/nvim-linux64.deb"
+    # - name: Install neovim
+    #   apt: deb="~/nvim-linux64.deb"
+    # - name: Remove neovim.deb file
+    #   file:
+    #     path: ~/nvim-linux64.deb
+    #     state: absent
+    # - name: Install zsh
+    #   apt: name=zsh
+    # - name: Change shell
+    #   shell: chsh -s `which zsh`
+    # - name: Install ohmyzsh
+    #   shell: sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+    # - name: Install Antigen plugin manager for zsh
+    #   shell: curl -L git.io/antigen > ~/tools/antigen/antigen.zsh 
+    # - name: Install Tmux
+    #   apt: name=tmux
+    # - name: Install nvm
+    #   shell: >
+    #     curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh | bash
+    #   args:
+    #     creates: "{{ ansible_env.HOME }}/.nvm/nvm.sh"
+    # - name: Install node and set version
+    #   shell: "source /root/.nvm/nvm.sh && nvm install node" 
+    #   args:
+    #     executable: /bin/bash
+    # - name: Source nvm
+    #   shell: source /root/.nvm/nvm.sh
+    #   args:
+    #     executable: /bin/bash
+    # - name: Clone Tmux plugin manager
+    #   git:
+    #     repo: https://github.com/tmux-plugins/tpm
+    #     dest: $HOME/.tmux/plugins/tpm
+    #     clone: yes
+    #     update: yes
+    - name: Creates directory
       file:
-        path: ~/nvim-linux64.deb
-        state: absent
-    - name: Install zsh
-      apt: name=zsh
-    - name: Change shell
-      shell: chsh -s `which zsh`
-    - name: Install ohmyzsh
-      shell: sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-    - name: Install Antigen plugin manager for zsh
-      shell: curl -L git.io/antigen > ~/tools/antigen/antigen.zsh 
-    - name: Install Tmux
-      apt: name=tmux
-    - name: Install nvm
-      shell: >
-        curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh | bash
-      args:
-        creates: "{{ ansible_env.HOME }}/.nvm/nvm.sh"
-    - name: Install node and set version
-      shell: "source /root/.nvm/nvm.sh && nvm install node" 
-      args:
-        executable: /bin/bash
-    - name: Source nvm
-      shell: source /root/.nvm/nvm.sh
-      args:
-        executable: /bin/bash
-    - name: Clone Tmux plugin manager
-      git:
-        repo: https://github.com/tmux-plugins/tpm
-        dest: $HOME/.tmux/plugins/tpm
-        clone: yes
-        update: yes
+        path: $HOME/tools/jdtls-eclipse/
+        state: directory
     - name: Download eclipse jdtls
       shell: curl -L -o /home/crohrmoser/tools/jdtls-eclipse/jdtls.tar.gz https://www.eclipse.org/downloads/download.php?file=/jdtls/milestones/1.9.0/jdt-language-server-1.9.0-202203031534.tar.gz
     - name: Unpack eclipse jdtls
       shell: tar -x $HOME/tools/jdtls-eclipse/jdtls.tar.gz
-    - name: Pull dotfiles
-      git:
-        repo: https://github.com/C-Rmoser/stow-dotfiles
-        dest: $HOME/dotfiles/
-        clone: yes
-        update: yes
-    - name: Remove .zshrc
-      file:
-        path: $HOME/.zshrc 
-        state: absent
-    - name: Remove .bashrc
-      file:
-        path: $HOME/.bashrc
-        state: absent
-    - name: Stow dotfiles
-      shell: cd $HOME/dotfiles/ && stow --target=$HOME */
+    # - name: Pull dotfiles
+    #   git:
+    #     repo: https://github.com/C-Rmoser/stow-dotfiles
+    #     dest: $HOME/dotfiles/
+    #     clone: yes
+    #     update: yes
+    # - name: Remove .zshrc
+    #   file:
+    #     path: $HOME/.zshrc 
+    #     state: absent
+    # - name: Remove .bashrc
+    #   file:
+    #     path: $HOME/.bashrc
+    #     state: absent
+    # - name: Stow dotfiles
+    #   shell: cd $HOME/dotfiles/ && stow --target=$HOME */
