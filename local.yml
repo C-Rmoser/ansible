@@ -52,15 +52,21 @@
     #     dest: $HOME/.tmux/plugins/tpm
     #     clone: yes
     #     update: yes
-    - name: Creates directory
+    - name: Create jdtls directory
       file:
         path: $HOME/tools/jdtls-eclipse/
         state: directory
     - name: Download eclipse jdtls
-      shell: curl -L -o /home/crohrmoser/tools/jdtls-eclipse/jdtls.tar.gz https://www.eclipse.org/downloads/download.php?file=/jdtls/milestones/1.9.0/jdt-language-server-1.9.0-202203031534.tar.gz
+      shell: curl -L -o $HOME/tools/jdtls-eclipse/jdtls.tar.gz https://www.eclipse.org/downloads/download.php?file=/jdtls/milestones/1.9.0/jdt-language-server-1.9.0-202203031534.tar.gz
     - name: Unpack eclipse jdtls
-      shell: tar -x $HOME/tools/jdtls-eclipse/jdtls.tar.gz
-    # - name: Pull dotfiles
+      shell: tar -xf $HOME/tools/jdtls-eclipse/jdtls.tar.gz
+    - name: Create Lombok folder
+      file:
+        path: $HOME/.local/share/eclipse/
+        state: directory
+    - name: Download Lombok
+    - get_url: url=http://projectlombok.org/downloads/lombok.jar dest=$HOME/.local/share/eclipse/lombok.jar    
+      # - name: Pull dotfiles
     #   git:
     #     repo: https://github.com/C-Rmoser/stow-dotfiles
     #     dest: $HOME/dotfiles/
