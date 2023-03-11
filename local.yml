@@ -65,7 +65,10 @@
         path: $HOME/.local/share/eclipse/
         state: directory
     - name: Download Lombok
-    - get_url: url=http://projectlombok.org/downloads/lombok.jar dest=$HOME/.local/share/eclipse/lombok.jar    
+      get_url: 
+        url: http://projectlombok.org/downloads/lombok.jar
+        dest: $HOME/tools/jdtls-eclipse/
+        
       # - name: Pull dotfiles
     #   git:
     #     repo: https://github.com/C-Rmoser/stow-dotfiles
